@@ -1,14 +1,12 @@
-package com.andersen.java.Models;
+package com.andersen.java.model;
 
 public class Skill {
 
-    private static Long currentId = 0L;
     private Long id;
     private String name;
 
-    public Skill(String name) {
-        currentId += 1;
-        this.id = currentId;
+    public Skill(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -22,5 +20,10 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return  id + ";" + name;
     }
 }

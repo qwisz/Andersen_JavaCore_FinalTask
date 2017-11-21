@@ -1,4 +1,4 @@
-package com.andersen.java.Models;
+package com.andersen.java.model;
 
 import java.util.Set;
 
@@ -34,5 +34,10 @@ public class Team {
 
     public void setDevelopers(Set<Developer> developers) {
         this.developers = developers;
+    }
+
+    @Override
+    public String toString() {
+        return  id + ";" + name + ";";
     }
 }

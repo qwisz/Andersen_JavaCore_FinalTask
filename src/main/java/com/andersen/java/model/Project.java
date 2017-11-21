@@ -1,19 +1,19 @@
-package com.andersen.java.Models;
+package com.andersen.java.model;
 
 import java.util.Set;
 
-public class Company {
+public class Project {
 
     private static Long currentId = 0L;
     private Long id;
     private String name;
-    private Set<Project> projects;
+    private Set<Team> teams;
 
-    public Company(String name, Set<Project> projects) {
+    public Project(String name, Set<Team> teams) {
         currentId += 1;
         this.id = currentId;
         this.name = name;
-        this.projects = projects;
+        this.teams = teams;
     }
 
     public Long getId() {
@@ -28,11 +28,11 @@ public class Company {
         this.name = name;
     }
 
-    public Set<Project> getProjects() {
-        return projects;
+    public Set<Team> getTeams() {
+        return teams;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 }

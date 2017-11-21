@@ -1,4 +1,4 @@
-package com.andersen.java.Models;
+package com.andersen.java.model;
 
 import java.util.Set;
 
