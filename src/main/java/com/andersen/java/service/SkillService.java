@@ -35,7 +35,7 @@ public class SkillService {
         return skill;
     }
 
-    public void read(Long id) throws IOException {
+    public Skill read(Long id) throws IOException {
 
         List<String> skills = Files.readAllLines(PATH);
         Skill result = null;
@@ -49,11 +49,12 @@ public class SkillService {
             }
         }
 
-        if (result != null) {
-            System.out.println(result);
-        } else {
-            System.out.println("Skill with such id doesn't exist");
+        if (result == null) {
+            throw new RuntimeException("Skill with such id doesn't exist");
         }
+
+        System.out.println(result);
+        return result;
     }
 
     public void update(Long id, String name) throws IOException {

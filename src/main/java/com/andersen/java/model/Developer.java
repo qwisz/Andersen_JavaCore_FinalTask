@@ -66,4 +66,18 @@ public class Developer {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder builder = new StringBuilder();
+        for (Skill skill :
+                skills) {
+            builder.append(skill.getId()).append(",");
+        }
+
+        String skillsString = builder.substring(0, builder.length() - 1);
+
+        return  id + ";" + firstName  + ";" + lastName + ";" + speciality + ";" + salary + ";" + skillsString;
+    }
 }
