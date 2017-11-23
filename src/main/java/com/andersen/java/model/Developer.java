@@ -5,7 +5,6 @@ import java.util.Set;
 
 public class Developer {
 
-    private static Long currentId = 0L;
     private Long id;
     private String firstName;
     private String lastName;
@@ -13,9 +12,8 @@ public class Developer {
     private Set<Skill> skills;
     private BigDecimal salary;
 
-    public Developer(String firstName, String lastName, String speciality, Set<Skill> skills, BigDecimal salary) {
-        currentId += 1;
-        this.id = currentId;
+    public Developer(Long id, String firstName, String lastName, String speciality, Set<Skill> skills, BigDecimal salary) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;
