@@ -3,7 +3,7 @@ package com.andersen.java.model;
 import java.math.BigDecimal;
 import java.util.Set;
 
-public class Developer {
+public class Developer implements Identifier {
 
     private Long id;
     private String firstName;
@@ -12,8 +12,7 @@ public class Developer {
     private Set<Skill> skills;
     private BigDecimal salary;
 
-    public Developer(Long id, String firstName, String lastName, String speciality, Set<Skill> skills, BigDecimal salary) {
-        this.id = id;
+    public Developer(String firstName, String lastName, String speciality, Set<Skill> skills, BigDecimal salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;
@@ -63,6 +62,11 @@ public class Developer {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

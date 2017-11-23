@@ -19,20 +19,22 @@ public class SkillDAO implements CrudDAO<Skill> {
 
     @Override
     public Skill save(Skill entity) throws IOException {
-        Objects.requireNonNull(entity);
+//        Objects.requireNonNull(entity);
+//
+//        Long oldId = Long.parseLong(Files.readAllLines(PATH_ID).get(0));
+//
+//        Long currentId = oldId + 1;
+//        entity.setId(currentId);
+//
+//        List<String> ids = Collections.singletonList(currentId.toString());
+//        Files.write(PATH_ID, ids, StandardCharsets.UTF_8);
+//
+//        List<String> lines = Collections.singletonList(entity.toString());
+//        Files.write(PATH, lines, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+//
+//        return entity;
 
-        Long oldId = Long.parseLong(Files.readAllLines(PATH_ID).get(0));
-
-        Long currentId = oldId + 1;
-        entity.setId(currentId);
-
-        List<String> ids = Collections.singletonList(currentId.toString());
-        Files.write(PATH_ID, ids, StandardCharsets.UTF_8);
-
-        List<String> lines = Collections.singletonList(entity.toString());
-        Files.write(PATH, lines, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
-
-        return entity;
+        return save(entity, PATH, PATH_ID);
     }
 
     @Override
@@ -75,23 +77,25 @@ public class SkillDAO implements CrudDAO<Skill> {
 
     @Override
     public boolean update(Long id, Skill newSkill) throws IOException {
-        Objects.requireNonNull(id);
-        Objects.requireNonNull(newSkill);
+//        Objects.requireNonNull(id);
+//        Objects.requireNonNull(newSkill);
+//
+//        List<String> skills = Files.readAllLines(PATH);
+//        String oldSkillString;
+//
+//        for (String s : skills) {
+//            if (s.split(";")[0].equals(id.toString())) {
+//                oldSkillString = s;
+//                newSkill.setId(id);
+//                Files.write(PATH,
+//                        new String(Files.readAllBytes(PATH), StandardCharsets.UTF_8)
+//                                .replace(oldSkillString, newSkill.toString())
+//                                .getBytes(StandardCharsets.UTF_8));
+//                return true;
+//            }
+//        }
+//        return false;
 
-        List<String> skills = Files.readAllLines(PATH);
-        String oldSkillString;
-
-        for (String s : skills) {
-            if (s.split(";")[0].equals(id.toString())) {
-                oldSkillString = s;
-                newSkill.setId(id);
-                Files.write(PATH,
-                        new String(Files.readAllBytes(PATH), StandardCharsets.UTF_8)
-                                .replace(oldSkillString, newSkill.toString())
-                                .getBytes(StandardCharsets.UTF_8));
-                return true;
-            }
-        }
-        return false;
+        return update(id, newSkill, PATH, PATH_ID);
     }
 }
