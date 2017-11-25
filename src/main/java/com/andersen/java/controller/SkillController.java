@@ -18,14 +18,12 @@ public class SkillController {
         return skill != null;
     }
 
-    public Skill read(String idString) throws IOException {
+    public String read(String idString) throws IOException {
         Objects.requireNonNull(idString);
 
         Long id = Long.parseLong(idString);
 
-        Skill skill = dao.read(id);
-
-        return skill;
+        return dao.read(id);
     }
 
     public boolean update(String idString, String name) throws IOException {

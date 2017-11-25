@@ -71,7 +71,6 @@ public class Developer implements Identifier {
 
     @Override
     public String toString() {
-
         StringBuilder builder = new StringBuilder();
         for (Skill skill :
                 skills) {

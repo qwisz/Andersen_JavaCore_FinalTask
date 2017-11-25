@@ -2,22 +2,23 @@ package com.andersen.java.model;
 
 import java.util.Set;
 
-public class Project {
+public class Project implements Identifier {
 
-    private static Long currentId = 0L;
     private Long id;
     private String name;
     private Set<Team> teams;
 
     public Project(String name, Set<Team> teams) {
-        currentId += 1;
-        this.id = currentId;
         this.name = name;
         this.teams = teams;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

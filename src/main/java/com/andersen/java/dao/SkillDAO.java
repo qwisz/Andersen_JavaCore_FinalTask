@@ -39,40 +39,43 @@ public class SkillDAO implements CrudDAO<Skill> {
 
     @Override
     public void delete(Long id) throws IOException {
-        Objects.requireNonNull(id);
+//        Objects.requireNonNull(id);
+//
+//        List<String> skills = Files.readAllLines(PATH);
+//        String oldSkillString;
+//
+//        for (String s : skills) {
+//            if (s.split(";")[0].equals(id.toString())) {
+//                oldSkillString = s;
+//                Files.write(PATH,
+//                        new String(Files.readAllBytes(PATH), StandardCharsets.UTF_8)
+//                                .replace(oldSkillString, "")
+//                                .getBytes(StandardCharsets.UTF_8));
+//                break;
+//            }
+//        }
 
-        List<String> skills = Files.readAllLines(PATH);
-        String oldSkillString;
-
-        for (String s : skills) {
-            if (s.split(";")[0].equals(id.toString())) {
-                oldSkillString = s;
-                Files.write(PATH,
-                        new String(Files.readAllBytes(PATH), StandardCharsets.UTF_8)
-                                .replace(oldSkillString, "")
-                                .getBytes(StandardCharsets.UTF_8));
-                break;
-            }
-        }
+        delete(id, PATH);
     }
 
     @Override
-    public Skill read(Long id) throws IOException {
-        Objects.requireNonNull(id);
+    public String read(Long id) throws IOException {
+//        Objects.requireNonNull(id);
+//
+//        List<String> skills = Files.readAllLines(PATH);
+//        skills.removeIf(s -> s.equals(""));
+//        String result = null;
+//
+//        for (String s : skills) {
+//            if (s.split(";")[0].equals(id.toString())) {
+//                result = s;
+//                break;
+//            }
+//        }
+//
+//        return result;
 
-        List<String> skills = Files.readAllLines(PATH);
-        Skill result = null;
-
-        for (String s : skills) {
-            if (s.split(";")[0].equals(id.toString())) {
-                String name = s.split(";")[1];
-                result = new Skill(name);
-                result.setId(id);
-                break;
-            }
-        }
-
-        return result;
+        return read(id, PATH);
     }
 
     @Override
@@ -96,6 +99,6 @@ public class SkillDAO implements CrudDAO<Skill> {
 //        }
 //        return false;
 
-        return update(id, newSkill, PATH, PATH_ID);
+        return update(id, newSkill, PATH);
     }
 }

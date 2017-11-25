@@ -21,7 +21,7 @@ public class SkillView {
     public void read() throws IOException {
 
         System.out.println("Enter the id of the skill");
-        Skill skill = controller.read(sc.nextLine());
+        String skill = controller.read(sc.nextLine());
 
         if (skill == null)
             System.out.println("Skill with such id doesn't exist");

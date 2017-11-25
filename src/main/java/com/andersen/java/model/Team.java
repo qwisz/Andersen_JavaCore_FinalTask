@@ -2,22 +2,23 @@ package com.andersen.java.model;
 
 import java.util.Set;
 
-public class Team {
+public class Team implements Identifier {
 
-    private static Long currentId = 0L;
     private Long id;
     private String name;
     private Set<Developer> developers;
 
     public Team(String name, Set<Developer> developers) {
-        currentId += 1;
-        this.id = currentId;
         this.name = name;
         this.developers = developers;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,6 +39,14 @@ public class Team {
 
     @Override
     public String toString() {
-        return  id + ";" + name + ";";
+        StringBuilder builder = new StringBuilder();
+        for (Developer dev:
+                developers) {
+            builder.append(dev.getId()).append(",");
+        }
+
+        String developersString = builder.substring(0, builder.length() - 1);
+
+        return  id + ";" + name + ";" + developersString;
     }
 }

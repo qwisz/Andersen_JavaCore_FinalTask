@@ -3,8 +3,11 @@ package com.andersen.java.dao;
 import com.andersen.java.model.Developer;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
 
 public class DeveloperDAO implements CrudDAO<Developer> {
 
@@ -13,22 +16,22 @@ public class DeveloperDAO implements CrudDAO<Developer> {
 
     @Override
     public Developer save(Developer entity) throws IOException {
-
         return save(entity, PATH, PATH_ID);
     }
 
     @Override
     public void delete(Long id) throws IOException {
-
+        delete(id, PATH);
     }
 
+
     @Override
-    public Developer read(Long id) throws IOException {
-        return null;
+    public String read(Long id) throws IOException {
+        return read(id, PATH);
     }
 
     @Override
     public boolean update(Long id, Developer entity) throws IOException {
-        return false;
+        return update(id, entity, PATH);
     }
 }

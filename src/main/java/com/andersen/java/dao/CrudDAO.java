@@ -1,6 +1,7 @@
 package com.andersen.java.dao;
 
 import com.andersen.java.model.Identifier;
+import com.andersen.java.model.Skill;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +18,7 @@ public interface CrudDAO<T extends Identifier> {
 
     void delete(Long id) throws IOException;
 
-    T read(Long id) throws IOException;
+    String read(Long id) throws IOException;
 
     boolean update(Long id, T entity) throws IOException;
 
@@ -38,9 +39,46 @@ public interface CrudDAO<T extends Identifier> {
         return entity;
     }
 
-    default boolean update(Long id, T entity, Path path, Path pathId) throws IOException {
+    default String read(Long id, Path path) throws IOException {
+        Objects.requireNonNull(id);
+
+        List<String> skills = Files.readAllLines(path);
+        skills.removeIf(s -> s.equals(""));
+        String result = null;
+
+        for (String s : skills) {
+            if (s.split(";")[0].equals(id.toString())) {
+                result = s;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    default boolean update(Long id, T entity, Path path) throws IOException {
         Objects.requireNonNull(id);
         Objects.requireNonNull(entity);
+
+        List<String> entities = Files.readAllLines(path);
+        String oldEntityString;
+
+        for (String s : entities) {
+            if (s.split(";")[0].equals(id.toString())) {
+                oldEntityString = s;
+                entity.setId(id);
+                Files.write(path,
+                        new String(Files.readAllBytes(path), StandardCharsets.UTF_8)
+                                .replace(oldEntityString, entity.toString())
+                                .getBytes(StandardCharsets.UTF_8));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    default void delete(Long id, Path path) throws IOException {
+        Objects.requireNonNull(id);
 
         List<String> skills = Files.readAllLines(path);
         String oldSkillString;
@@ -48,14 +86,12 @@ public interface CrudDAO<T extends Identifier> {
         for (String s : skills) {
             if (s.split(";")[0].equals(id.toString())) {
                 oldSkillString = s;
-                entity.setId(id);
                 Files.write(path,
                         new String(Files.readAllBytes(path), StandardCharsets.UTF_8)
-                                .replace(oldSkillString, entity.toString())
+                                .replace(oldSkillString, "")
                                 .getBytes(StandardCharsets.UTF_8));
-                return true;
+                break;
             }
         }
-        return false;
     }
 }

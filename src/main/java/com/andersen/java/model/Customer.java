@@ -2,9 +2,8 @@ package com.andersen.java.model;
 
 import java.util.Set;
 
-public class Customer {
+public class Customer implements Identifier {
 
-    private static Long currentId = 0L;
     private Long id;
     private String firstName;
     private String lastName;
@@ -12,8 +11,6 @@ public class Customer {
     private Set<Project> projects;
 
     public Customer(String firstName, String lastName, String address, Set<Project> projects) {
-        currentId += 1;
-        this.id = currentId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -22,6 +19,10 @@ public class Customer {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
