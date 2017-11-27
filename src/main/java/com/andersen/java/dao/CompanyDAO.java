@@ -29,4 +29,10 @@ public class CompanyDAO implements CrudDAO<Company>{
     public boolean update(Long id, Company entity) throws IOException {
         return update(id, entity, PATH);
     }
+
+    @Override
+    public boolean isExist(Long id) throws IOException {
+
+        return isExist(id, PATH);
+    }
 }

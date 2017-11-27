@@ -30,4 +30,10 @@ public class ProjectDAO implements CrudDAO<Project> {
     public boolean update(Long id, Project entity) throws IOException {
         return update(id, entity, PATH);
     }
+
+    @Override
+    public boolean isExist(Long id) throws IOException {
+
+        return isExist(id, PATH);
+    }
 }

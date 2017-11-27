@@ -29,4 +29,10 @@ public class TeamDAO implements CrudDAO<Team> {
     public boolean update(Long id, Team entity) throws IOException {
         return update(id, entity, PATH);
     }
+
+    @Override
+    public boolean isExist(Long id) throws IOException {
+
+        return isExist(id, PATH);
+    }
 }

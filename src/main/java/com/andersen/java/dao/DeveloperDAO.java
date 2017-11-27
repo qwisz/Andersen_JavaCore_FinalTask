@@ -34,4 +34,10 @@ public class DeveloperDAO implements CrudDAO<Developer> {
     public boolean update(Long id, Developer entity) throws IOException {
         return update(id, entity, PATH);
     }
+
+    @Override
+    public boolean isExist(Long id) throws IOException {
+
+        return isExist(id, PATH);
+    }
 }

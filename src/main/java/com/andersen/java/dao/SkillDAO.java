@@ -101,4 +101,21 @@ public class SkillDAO implements CrudDAO<Skill> {
 
         return update(id, newSkill, PATH);
     }
+
+    @Override
+    public boolean isExist(Long id) throws IOException {
+
+        return isExist(id, PATH);
+    }
+
+    public Skill getById(Long id) throws IOException {
+        String skillString = read(id);
+
+        String[] strings = skillString.split(";");
+
+        Skill skill = new Skill(strings[1]);
+        skill.setId(id);
+
+        return skill;
+    }
 }

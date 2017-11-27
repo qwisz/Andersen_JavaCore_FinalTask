@@ -36,4 +36,18 @@ public class Project implements Identifier {
     public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder builder = new StringBuilder();
+        for (Team team:
+                teams) {
+            builder.append(team.getId()).append(",");
+        }
+
+        String teamsString = builder.substring(0, builder.length() - 1);
+
+        return  id + ";" + name + ";" + teamsString;
+    }
 }

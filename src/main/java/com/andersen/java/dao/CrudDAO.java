@@ -20,6 +20,8 @@ public interface CrudDAO<T extends Identifier> {
 
     String read(Long id) throws IOException;
 
+    boolean isExist(Long id) throws IOException;
+
     boolean update(Long id, T entity) throws IOException;
 
     default T save(T entity, Path path, Path pathId) throws IOException {
@@ -93,5 +95,20 @@ public interface CrudDAO<T extends Identifier> {
                 break;
             }
         }
+    }
+
+    default boolean isExist(Long id, Path path) throws IOException {
+        Objects.requireNonNull(id);
+
+        List<String> skills = Files.readAllLines(path);
+        skills.removeIf(s -> s.equals(""));
+
+        for (String s : skills) {
+            if (s.split(";")[0].equals(id.toString())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

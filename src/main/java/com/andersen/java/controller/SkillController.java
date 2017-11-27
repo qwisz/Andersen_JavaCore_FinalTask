@@ -44,4 +44,5 @@ public class SkillController {
 
         dao.delete(id);
     }
+
 }
