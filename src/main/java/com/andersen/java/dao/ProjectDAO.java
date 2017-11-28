@@ -6,10 +6,14 @@ import com.andersen.java.model.Team;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ProjectDAO implements CrudDAO<Project> {
     private final static Path PATH = Paths.get("src/main/resources/projects.txt");
     private final static Path PATH_ID = Paths.get("src/main/resources/projectsId.txt");
+
+    private TeamDAO teamDAO = new TeamDAO();
 
     @Override
     public Project save(Project entity) throws IOException {
@@ -35,5 +39,24 @@ public class ProjectDAO implements CrudDAO<Project> {
     public boolean isExist(Long id) throws IOException {
 
         return isExist(id, PATH);
+    }
+
+    public Project getById(Long id) throws IOException {
+        String projectString = read(id);
+
+        String[] strings = projectString.split(";");
+
+        String name = strings[1];
+        Set<Team> teams = new HashSet<>();
+        String[] teamsIds = strings[2].split(",");
+
+        for (String idString: teamsIds) {
+            teams.add(teamDAO.getById(Long.parseLong(idString)));
+        }
+
+        Project project = new Project(name, teams);
+        project.setId(id);
+
+        return project;
     }
 }

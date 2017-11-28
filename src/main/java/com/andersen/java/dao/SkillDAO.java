@@ -19,62 +19,16 @@ public class SkillDAO implements CrudDAO<Skill> {
 
     @Override
     public Skill save(Skill entity) throws IOException {
-//        Objects.requireNonNull(entity);
-//
-//        Long oldId = Long.parseLong(Files.readAllLines(PATH_ID).get(0));
-//
-//        Long currentId = oldId + 1;
-//        entity.setId(currentId);
-//
-//        List<String> ids = Collections.singletonList(currentId.toString());
-//        Files.write(PATH_ID, ids, StandardCharsets.UTF_8);
-//
-//        List<String> lines = Collections.singletonList(entity.toString());
-//        Files.write(PATH, lines, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
-//
-//        return entity;
-
         return save(entity, PATH, PATH_ID);
     }
 
     @Override
     public void delete(Long id) throws IOException {
-//        Objects.requireNonNull(id);
-//
-//        List<String> skills = Files.readAllLines(PATH);
-//        String oldSkillString;
-//
-//        for (String s : skills) {
-//            if (s.split(";")[0].equals(id.toString())) {
-//                oldSkillString = s;
-//                Files.write(PATH,
-//                        new String(Files.readAllBytes(PATH), StandardCharsets.UTF_8)
-//                                .replace(oldSkillString, "")
-//                                .getBytes(StandardCharsets.UTF_8));
-//                break;
-//            }
-//        }
-
         delete(id, PATH);
     }
 
     @Override
     public String read(Long id) throws IOException {
-//        Objects.requireNonNull(id);
-//
-//        List<String> skills = Files.readAllLines(PATH);
-//        skills.removeIf(s -> s.equals(""));
-//        String result = null;
-//
-//        for (String s : skills) {
-//            if (s.split(";")[0].equals(id.toString())) {
-//                result = s;
-//                break;
-//            }
-//        }
-//
-//        return result;
-
         return read(id, PATH);
     }
 

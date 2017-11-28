@@ -11,38 +11,24 @@ public class SkillController {
     private SkillDAO dao = new SkillDAO();
 
     public boolean create(String name) throws IOException {
-        Objects.requireNonNull(name);
-
         Skill skill = dao.save(new Skill(name));
 
         return skill != null;
     }
 
-    public String read(String idString) throws IOException {
-        Objects.requireNonNull(idString);
-
-        Long id = Long.parseLong(idString);
-
+    public String read(Long id) throws IOException {
         return dao.read(id);
     }
 
-    public boolean update(String idString, String name) throws IOException {
-
-        Objects.requireNonNull(idString);
-        Objects.requireNonNull(name);
-
-        Long id = Long.parseLong(idString);
-        Skill skill = new Skill(name);
-
-        return dao.update(id, skill);
+    public boolean update(Long id, String name) throws IOException {
+        return dao.update(id, new Skill(name));
     }
 
-    public void delete(String idString) throws IOException {
-        Objects.requireNonNull(idString);
-
-        Long id = Long.parseLong(idString);
-
+    public void delete(Long id) throws IOException {
         dao.delete(id);
     }
 
+    public boolean isExist(Long id) throws IOException {
+        return dao.isExist(id);
+    }
 }

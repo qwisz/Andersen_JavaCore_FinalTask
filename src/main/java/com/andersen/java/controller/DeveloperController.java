@@ -4,7 +4,6 @@ import com.andersen.java.dao.DeveloperDAO;
 import com.andersen.java.dao.SkillDAO;
 import com.andersen.java.model.Developer;
 import com.andersen.java.model.Skill;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -18,7 +17,13 @@ public class DeveloperController {
     public boolean create(String firstName, String lastName, String speciality,
                           Set<Long> ids, BigDecimal salary) throws IOException {
 
-        Set<Skill> skills = getSkillsByIds(ids);
+        Set<Skill> skills = new HashSet<>();
+
+        for (Long id : ids) {
+            if (!skillDAO.isExist(id))
+                return false;
+            skills.add(skillDAO.getById(id));
+        }
 
         developerDAO.save(new Developer(firstName, lastName, speciality, skills, salary));
 
@@ -37,7 +42,13 @@ public class DeveloperController {
     public boolean update(Long id, String firstName, String lastName, String speciality,
                           Set<Long> ids, BigDecimal salary) throws IOException {
 
-        Set<Skill> skills = getSkillsByIds(ids);
+        Set<Skill> skills = new HashSet<>();
+
+        for (Long idd : ids) {
+            if (!skillDAO.isExist(idd))
+                return false;
+            skills.add(skillDAO.getById(idd));
+        }
 
         Developer developer = new Developer(firstName, lastName, speciality, skills, salary);
         return developerDAO.update(id, developer);
@@ -45,15 +56,5 @@ public class DeveloperController {
 
     public void delete(Long id) throws IOException {
         developerDAO.delete(id);
-    }
-
-    private Set<Skill> getSkillsByIds(Set<Long> ids) throws IOException {
-        Set<Skill> skills = new HashSet<>();
-
-        for (Long id : ids) {
-            skills.add(skillDAO.getById(id));
-        }
-
-        return skills;
     }
 }
