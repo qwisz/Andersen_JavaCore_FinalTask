@@ -4,3 +4,4 @@
 4;Evgeny;Pinyakin;Noobas;5000;2,3
 5;Pomidor;Kartofeniy;Rak;6000;1,3
 6;Morkovka;Krasnaya;Ovosch;4000;2
+7;Perec;Ostryi;Ovosch;9000;4,5,2

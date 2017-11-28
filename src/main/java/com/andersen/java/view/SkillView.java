@@ -6,7 +6,7 @@ import com.andersen.java.model.Skill;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class SkillView {
+public class SkillView implements IView {
 
     private SkillController controller = new SkillController();
     private Scanner sc = new Scanner(System.in);

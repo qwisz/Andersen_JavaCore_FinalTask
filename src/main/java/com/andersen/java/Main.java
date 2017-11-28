@@ -56,14 +56,17 @@ public class Main {
 //        cv.delete();
 //        cv.read();
 
-        CustomerView cv = new CustomerView();
+//        CustomerView cv = new CustomerView();
 //        cv.create();
 //        cv.create();
-        cv.read();
-        cv.update();
-        cv.read();
-        cv.delete();
-        cv.read();
+//        cv.read();
+//        cv.update();
+//        cv.read();
+//        cv.delete();
+//        cv.read();
+
+        ConsoleHelper consoleHelper = new ConsoleHelper();
+        consoleHelper.menu();
 
     }
 }

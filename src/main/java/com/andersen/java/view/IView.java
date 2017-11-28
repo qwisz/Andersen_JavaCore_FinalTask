@@ -1,5 +1,6 @@
 package com.andersen.java.view;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -7,6 +8,14 @@ import java.util.Set;
 public interface IView {
 
     Scanner sc = new Scanner(System.in);
+
+    void create() throws IOException;
+
+    void read() throws IOException;
+
+    void update() throws IOException;
+
+    void delete() throws IOException;
 
     default Set<Long> getIds() {
 
